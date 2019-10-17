@@ -831,7 +831,7 @@ class TaskExecutor:
                 # file on disk, which manifests to the user as a timeout happening
                 # before it's time to timeout.
                 if (int(async_result.get('finished', 0)) == 1 or
-                        ('failed' in async_result and async_result.get('_ansible_parsed', False)) or
+                        ('failed' in async_result and async_result.get('failed', False) and async_result.get('_ansible_parsed', False)) or
                         'skipped' in async_result):
                     break
             except Exception as e:
